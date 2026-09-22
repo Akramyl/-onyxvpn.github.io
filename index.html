@@ -23,10 +23,13 @@
       align-items: center;
       padding: 20px 40px;
       background: rgba(13,13,26,0.95);
-      position: sticky;
+      position: fixed; 
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 100;
       border-bottom: 1px solid #2a1a4a;
+      transition: top 0.3s ease-in-out;
     }
     .logo { font-size: 1.6rem; font-weight: 800; }
     .logo span { color: #7c3aed; }
@@ -43,7 +46,7 @@
 
     .hero {
       text-align: center;
-      padding: 100px 20px 60px;
+      padding: 160px 20px 60px; 
       background: radial-gradient(ellipse at center, #1a0a3a 0%, #0d0d1a 70%);
     }
     .hero img.app-icon {
@@ -192,7 +195,7 @@
 </head>
 <body>
 
-<nav>
+<nav id="navbar">
   <div class="logo">Onyx<span>VPN</span></div>
   <a href="#download-section" class="nav-btn">⬇ Download APK</a>
 </nav>
@@ -278,6 +281,23 @@
 <footer>
   <p>© 2025 OnyxVPN. All rights reserved.</p>
 </footer>
+
+<script>
+  let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScroll > lastScrollTop && currentScroll > 80) {
+      navbar.style.top = "-90px"; 
+    } else {
+      navbar.style.top = "0";
+    }
+    
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  });
+</script>
 
 </body>
 </html>
